@@ -23,11 +23,11 @@ export default function InputField({ field, value, onChange }: InputFieldProps) 
                 type="button"
                 onClick={() => onChange(option)}
                 className={`
-                  flex-1 px-2 py-3 text-sm font-semibold border
+                  interactive-panel flex-1 px-2 py-3 text-sm font-semibold border
                   min-h-[44px] will-change-transform
                   ${selected
-                    ? "bg-orange-500 border-orange-500 text-white"
-                    : "bg-transparent border-[#222] text-gray-400 hover:border-[#444] hover:text-gray-200"
+                    ? "bg-orange-500 border-orange-500 text-white shadow-[0_10px_26px_rgba(249,115,22,0.28)]"
+                    : "bg-white/5 border-white/10 text-gray-400 hover:border-white/20 hover:text-gray-200"
                   }
                 `}
               >
@@ -50,13 +50,13 @@ export default function InputField({ field, value, onChange }: InputFieldProps) 
           role="switch"
           aria-checked={checked}
           onClick={() => onChange(!checked)}
-          className="flex items-center gap-2 min-h-[44px]"
+          className="interactive-panel flex items-center gap-2 min-h-[44px] rounded-full px-1.5"
         >
           <span className={`text-sm font-semibold transition-colors ${checked ? "text-orange-400" : "text-gray-600"}`}>
             {checked ? "Yes" : "No"}
           </span>
-          <div className={`relative w-10 h-5 rounded-full transition-colors ${checked ? "bg-orange-500" : "bg-[#222]"}`}>
-            <span className={`absolute top-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform duration-200 ${checked ? "translate-x-5" : "translate-x-0.5"}`} />
+          <div className={`relative w-10 h-5 rounded-full transition-all duration-300 ${checked ? "bg-orange-500 shadow-[0_8px_20px_rgba(249,115,22,0.35)]" : "bg-white/10"}`}>
+            <span className={`absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform duration-300 ease-out ${checked ? "translate-x-5" : "translate-x-0"}`} />
           </div>
         </button>
       </div>
@@ -77,7 +77,7 @@ export default function InputField({ field, value, onChange }: InputFieldProps) 
           max={100}
           value={numValue}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="w-full h-1 bg-[#222] appearance-none cursor-pointer accent-orange-500"
+          className="w-full h-1 bg-white/10 appearance-none cursor-pointer accent-orange-500"
         />
       </div>
     );

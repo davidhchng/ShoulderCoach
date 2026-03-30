@@ -73,30 +73,19 @@ export default function DecisionPage({ meta }: DecisionPageProps) {
   return (
     <main className="min-h-screen max-w-md mx-auto">
       {/* Header bar */}
-      <div className="border-b border-[#141414]">
-        {/* Breadcrumb */}
+      <div className="glass-bar border-b border-white/5">
         <div className="flex items-center gap-2 px-4 pt-3 pb-0">
-          <Link
-            href="/"
-            className="text-[9px] font-mono uppercase tracking-widest text-gray-600 hover:text-gray-400 transition-colors"
-          >
+          <Link href="/app" className="text-[9px] font-mono uppercase tracking-widest text-gray-500 hover:text-gray-300 transition-colors">
             ShoulderCoach
           </Link>
-          <span className="text-gray-700 text-[9px]">/</span>
+          <span className="text-white/20 text-[9px]">/</span>
           <span className={`text-[9px] font-mono uppercase tracking-widest ${decisionMeta.color}`}>
             {decisionMeta.abbr}
           </span>
         </div>
         <div className="flex items-center gap-4 px-4 py-3">
-          <Link
-            href="/"
-            className="text-gray-600 hover:text-white transition-colors min-h-[44px] flex items-center text-lg"
-          >
-            ←
-          </Link>
-          <h1 className="text-lg font-black uppercase tracking-tight text-white leading-tight">
-            {meta.display_name}
-          </h1>
+          <Link href="/app" className="text-gray-500 hover:text-white transition-colors min-h-[44px] flex items-center text-lg">←</Link>
+          <h1 className="text-lg font-black uppercase tracking-tight text-white leading-tight">{meta.display_name}</h1>
         </div>
       </div>
 
@@ -109,18 +98,13 @@ export default function DecisionPage({ meta }: DecisionPageProps) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleParse()}
-            className="flex-1 bg-[#0f0f0f] border border-[#1e1e1e] px-4 py-3
-                       text-white text-sm placeholder-gray-700
-                       focus:outline-none focus:border-[#333]
-                       min-h-[44px]"
+            className="flex-1 glass border border-white/8 px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-white/20 min-h-[44px] bg-transparent"
           />
           <button
             type="button"
             onClick={handleParse}
             disabled={parsing || !description.trim()}
-            className="px-4 border border-[#1e1e1e] text-gray-500 hover:text-white hover:border-[#333]
-                       transition-colors disabled:opacity-30 disabled:cursor-not-allowed
-                       text-xs uppercase tracking-widest font-medium min-h-[44px] whitespace-nowrap"
+            className="glass interactive-panel px-4 border border-white/8 text-gray-400 hover:text-white hover:border-white/20 disabled:opacity-30 disabled:cursor-not-allowed text-xs uppercase tracking-widest font-medium min-h-[44px] whitespace-nowrap"
           >
             {parsing ? "..." : "Fill"}
           </button>
@@ -128,7 +112,7 @@ export default function DecisionPage({ meta }: DecisionPageProps) {
 
         {/* Form */}
         <form onSubmit={handleSubmit}>
-          <div className="border border-[#1e1e1e] px-4 py-5 mb-3">
+          <div className="glass border border-white/8 px-4 py-5 mb-3">
             {meta.input_schema.fields.map((field) => (
               <InputField
                 key={field.key}
@@ -142,11 +126,7 @@ export default function DecisionPage({ meta }: DecisionPageProps) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-4 bg-orange-500 hover:bg-orange-400 active:bg-orange-600
-                       text-white font-black text-base uppercase tracking-widest
-                       transition-colors duration-100
-                       disabled:opacity-50 disabled:cursor-not-allowed
-                       min-h-[52px]"
+            className="interactive-panel w-full py-4 bg-orange-500 hover:bg-orange-400 text-white font-black text-base uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed min-h-[52px] shadow-[0_14px_32px_rgba(249,115,22,0.28)]"
           >
             {loading ? (
               <span className="flex items-center justify-center gap-2">
@@ -156,15 +136,13 @@ export default function DecisionPage({ meta }: DecisionPageProps) {
                 </svg>
                 Analyzing
               </span>
-            ) : (
-              "Get Call"
-            )}
+            ) : "Get Call"}
           </button>
         </form>
 
         {/* Error */}
         {error && (
-          <div className="border border-red-900 px-4 py-3 text-red-400 text-sm">
+          <div className="glass border border-red-800/50 px-4 py-3 text-red-400 text-sm">
             {error}
           </div>
         )}

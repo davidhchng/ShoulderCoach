@@ -45,7 +45,7 @@ export default function CompareBar({
           </span>
         </div>
         <div
-          className="flex items-center justify-end pr-3 transition-all duration-700 bg-[#222]"
+          className="flex items-center justify-end pr-3 transition-all duration-700 bg-white/10"
           style={{ width: `${compPct}%` }}
         >
           <span className="text-xs font-bold text-gray-400 tabular-nums whitespace-nowrap">

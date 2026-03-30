@@ -1,97 +1,96 @@
 import Link from "next/link";
-import { fetchDecisions, type DecisionMeta } from "@/lib/api";
-import DecisionGrid from "@/components/DecisionGrid";
-import Basketball from "@/components/Basketball";
 
-export default async function HomePage() {
-  let decisions: DecisionMeta[] = [];
-  let error: string | null = null;
+const features = [
+  {
+    label: "Live Calls",
+    title: "Eight late-game decision tools",
+    text: "Get a fast recommendation for common coaching moments like fouling up three, timeout timing, or choosing between a quick two and a three.",
+  },
+  {
+    label: "Grounded",
+    title: "Backed by historical NBA data",
+    text: "Each result shows the confidence, comparison edge, and supporting numbers so the recommendation feels usable instead of vague.",
+  },
+  {
+    label: "Flexible",
+    title: "Ask your own coaching question",
+    text: "Use the coach flow when the situation is messy and you want the app to interpret the context for you.",
+  },
+];
 
-  try {
-    decisions = await fetchDecisions();
-  } catch {
-    error = "Backend offline — start uvicorn and reload.";
-  }
-
+export default function LandingPage() {
   return (
-    <main className="min-h-screen max-w-md mx-auto flex flex-col">
-      {/* Hero */}
-      <div className="relative overflow-hidden px-5 pt-12 pb-8 border-b border-[#141414]">
-        {/* Basketball — large, partially offscreen right */}
-        <div className="absolute right-[-28px] top-1/2 -translate-y-1/2 pointer-events-none">
-          <Basketball size={190} className="opacity-90" />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 max-w-[200px]">
-          <p className="text-[9px] font-mono font-bold uppercase tracking-[0.22em] text-orange-500 mb-4">
-            In-Game · Basketball
-          </p>
-          <h1 className="text-[42px] font-black uppercase leading-[0.92] tracking-tight text-white mb-4">
-            Shoulder<br />Coach
-          </h1>
-          <p className="text-xs text-gray-500 leading-relaxed">
-            Real-time decisions backed by 5 seasons of NBA play-by-play data.
-          </p>
-        </div>
-
-        {/* Stat bar */}
-        <div className="relative z-10 flex gap-5 mt-7">
-          <div>
-            <p className="text-base font-black text-white tabular-nums leading-none">5</p>
-            <p className="text-[9px] uppercase tracking-widest text-gray-600 mt-0.5">Seasons</p>
-          </div>
-          <div className="w-px bg-[#1e1e1e]" />
-          <div>
-            <p className="text-base font-black text-white tabular-nums leading-none">8</p>
-            <p className="text-[9px] uppercase tracking-widest text-gray-600 mt-0.5">Decisions</p>
-          </div>
-          <div className="w-px bg-[#1e1e1e]" />
-          <div>
-            <p className="text-base font-black text-white tabular-nums leading-none">5K+</p>
-            <p className="text-[9px] uppercase tracking-widest text-gray-600 mt-0.5">Games</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Ask the Coach card */}
-      <Link
-        href="/coach"
-        className="mx-5 mt-5 flex items-center justify-between border border-[#1e1e1e] px-4 py-4 hover:border-[#333] hover:bg-[#0d0d0d] transition-colors group"
-      >
-        <div>
-          <p className="text-[9px] font-mono uppercase tracking-widest text-orange-500 mb-1">
-            Custom
-          </p>
-          <p className="text-sm font-bold text-white">Ask the Coach</p>
-          <p className="text-xs text-gray-600 mt-0.5">
-            Any situation, any question
-          </p>
-        </div>
-        <span className="text-gray-600 group-hover:text-white transition-colors text-lg">→</span>
-      </Link>
-
-      {/* Section label */}
-      <div className="px-5 pt-5 pb-3 flex items-center gap-3">
-        <p className="text-[9px] font-mono font-bold uppercase tracking-[0.22em] text-gray-600">
-          Make a Call
+    <main className="min-h-screen max-w-md mx-auto flex flex-col px-4 py-5">
+      <section className="glass-bar fade-up relative overflow-hidden border border-white/8 px-5 pt-12 pb-8">
+        <p className="text-[9px] font-mono font-bold uppercase tracking-[0.22em] text-orange-400 mb-4">
+          Basketball Decision Support
         </p>
-        <div className="flex-1 h-px bg-[#141414]" />
-      </div>
+        <h1 className="text-[52px] font-black uppercase leading-[0.86] tracking-tight text-white">
+          Shoulder
+          <br />
+          Coach
+        </h1>
+        <p className="mt-4 max-w-[260px] text-sm leading-relaxed text-gray-300">
+          A coaching assistant for in-game basketball decisions. It turns historical NBA data into fast calls you can actually use on the sideline.
+        </p>
 
-      {/* Error or grid */}
-      {error ? (
-        <div className="mx-5 border border-red-900 px-4 py-3 text-red-400 text-sm">
-          {error}
+        <div className="mt-8 space-y-3">
+          <Link
+            href="/app"
+            className="interactive-panel block w-full bg-orange-500 hover:bg-orange-400 text-white font-black text-sm uppercase tracking-[0.18em] text-center px-4 py-4 shadow-[0_16px_36px_rgba(249,115,22,0.3)]"
+          >
+            Enter App
+          </Link>
+          <Link
+            href="/coach"
+            className="glass interactive-panel block w-full border border-white/10 px-4 py-4 text-center text-[10px] font-mono font-bold uppercase tracking-[0.22em] text-gray-300 hover:text-white hover:border-white/20"
+          >
+            Or Go Straight To Ask The Coach
+          </Link>
         </div>
-      ) : (
-        <DecisionGrid decisions={decisions} />
-      )}
+      </section>
 
-      {/* Footer */}
-      <div className="mt-auto px-5 py-6 border-t border-[#141414]">
-        <p className="text-[9px] uppercase tracking-widest text-gray-700 text-center">
-          ShoulderCoach · NBA 2019–2024
+      <section className="pt-4 space-y-px">
+        {features.map((feature, index) => (
+          <div
+            key={feature.title}
+            className="glass fade-up border border-white/8 px-4 py-4"
+            style={{ animationDelay: `${120 + index * 90}ms` }}
+          >
+            <p className="text-[9px] font-mono uppercase tracking-[0.22em] text-orange-400 mb-2">
+              {feature.label}
+            </p>
+            <h2 className="text-base font-black text-white leading-tight">{feature.title}</h2>
+            <p className="mt-2 text-xs leading-relaxed text-gray-400">{feature.text}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="fade-up pt-4" style={{ animationDelay: "380ms" }}>
+        <div className="glass border border-white/8 px-4 py-4">
+          <div className="flex items-center gap-3 mb-3">
+            <p className="text-[9px] font-mono uppercase tracking-[0.22em] text-gray-500">How It Works</p>
+            <div className="flex-1 h-px bg-white/6" />
+          </div>
+          <div className="grid grid-cols-3 gap-px" style={{ background: "rgba(255,255,255,0.04)" }}>
+            {[
+              ["1", "Pick", "Open a decision tool"],
+              ["2", "Input", "Describe the situation"],
+              ["3", "Decide", "Use the recommendation"],
+            ].map(([step, label, text], index) => (
+              <div key={label} className="glass px-3 py-4">
+                <p className="text-[18px] font-black text-white leading-none">{step}</p>
+                <p className="text-[9px] uppercase tracking-widest text-orange-400 mt-2">{label}</p>
+                <p className="text-[11px] text-gray-500 leading-relaxed mt-2">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="mt-auto pt-6 pb-2">
+        <p className="text-[9px] uppercase tracking-widest text-gray-600 text-center">
+          ShoulderCoach · Enter the app when you are ready
         </p>
       </div>
     </main>

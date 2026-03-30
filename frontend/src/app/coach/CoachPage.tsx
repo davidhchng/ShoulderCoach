@@ -85,17 +85,17 @@ export default function CoachPage() {
   return (
     <main className="min-h-screen max-w-md mx-auto flex flex-col">
       {/* Header */}
-      <div className="border-b border-[#141414]">
+      <div className="glass-bar border-b border-white/5">
         <div className="flex items-center gap-2 px-4 pt-3">
-          <Link href="/" className="text-[9px] font-mono uppercase tracking-widest text-gray-600 hover:text-gray-400 transition-colors">
+          <Link href="/app" className="text-[9px] font-mono uppercase tracking-widest text-gray-500 hover:text-gray-300 transition-colors">
             ShoulderCoach
           </Link>
-          <span className="text-gray-700 text-[9px]">/</span>
-          <span className="text-[9px] font-mono uppercase tracking-widest text-orange-500">Ask</span>
+          <span className="text-white/20 text-[9px]">/</span>
+          <span className="text-[9px] font-mono uppercase tracking-widest text-orange-400">Ask</span>
         </div>
         <div className="flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-4">
-            <Link href="/" className="text-gray-600 hover:text-white transition-colors min-h-[44px] flex items-center text-lg active:scale-95 active:opacity-70 transition-all">
+            <Link href="/app" className="text-gray-500 hover:text-white transition-all min-h-[44px] flex items-center text-lg">
               ←
             </Link>
             <div>
@@ -109,7 +109,7 @@ export default function CoachPage() {
           </div>
           <button
             onClick={() => setShowProfile((s) => !s)}
-            className="text-[9px] font-mono uppercase tracking-widest text-gray-600 hover:text-white transition-all border border-[#222] hover:border-[#444] px-3 py-2 active:scale-95 active:bg-[#111]"
+            className="glass interactive-panel text-[9px] font-mono uppercase tracking-widest text-gray-400 hover:text-white border border-white/10 hover:border-white/20 px-3 py-2"
           >
             {showProfile ? "Done" : "Setup"}
           </button>
@@ -118,19 +118,19 @@ export default function CoachPage() {
 
       {/* Team setup panel */}
       {showProfile && (
-        <div className="border-b border-[#141414] px-4 py-4 space-y-3 bg-[#0c0c0c]">
-          <p className="text-[9px] font-mono uppercase tracking-widest text-gray-600 mb-3">Team Context — saved locally</p>
+        <div className="glass-bar border-b border-white/5 px-4 py-4 space-y-3">
+          <p className="text-[9px] font-mono uppercase tracking-widest text-gray-500 mb-3">Team Context — saved locally</p>
           <div>
-            <label className="text-[9px] uppercase tracking-widest text-gray-600 block mb-1">Your Team</label>
+            <label className="text-[9px] uppercase tracking-widest text-gray-500 block mb-1">Your Team</label>
             <input type="text" placeholder="e.g. Lakers" value={profile.teamName}
               onChange={(e) => handleProfileChange("teamName", e.target.value)}
-              className="w-full bg-[#0f0f0f] border border-[#1e1e1e] px-3 py-2.5 text-white text-sm placeholder-gray-700 focus:outline-none focus:border-[#333]" />
+              className="w-full glass border border-white/8 px-3 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-white/20 bg-transparent" />
           </div>
           <div>
-            <label className="text-[9px] uppercase tracking-widest text-gray-600 block mb-1">Opponent</label>
+            <label className="text-[9px] uppercase tracking-widest text-gray-500 block mb-1">Opponent</label>
             <input type="text" placeholder="e.g. Celtics" value={profile.opponentName}
               onChange={(e) => handleProfileChange("opponentName", e.target.value)}
-              className="w-full bg-[#0f0f0f] border border-[#1e1e1e] px-3 py-2.5 text-white text-sm placeholder-gray-700 focus:outline-none focus:border-[#333]" />
+              className="w-full glass border border-white/8 px-3 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-white/20 bg-transparent" />
           </div>
         </div>
       )}
@@ -152,7 +152,7 @@ export default function CoachPage() {
                 <button
                   key={prompt}
                   onClick={() => setInput(prompt)}
-                  className="w-full text-left px-4 py-3 border border-[#1a1a1a] text-gray-500 text-xs hover:border-[#333] hover:text-gray-300 transition-all active:scale-[0.98] active:bg-[#0d0d0d]"
+                  className="interactive-panel w-full text-left px-4 py-3 glass border border-white/8 text-gray-400 text-xs hover:border-white/20 hover:text-gray-200"
                 >
                   {prompt}
                 </button>
@@ -166,8 +166,8 @@ export default function CoachPage() {
             {/* Text bubble */}
             <div className={`max-w-[88%] px-4 py-3 text-sm leading-relaxed ${
               msg.role === "coach"
-                ? "bg-orange-500 text-white"
-                : "bg-[#111] border border-[#1e1e1e] text-gray-200"
+                ? "bg-orange-500/90 backdrop-blur-sm text-white"
+                : "glass border border-white/8 text-gray-200"
             }`}>
               {msg.role === "ai" && (
                 <div className="flex items-center gap-2 mb-1.5">
@@ -193,7 +193,7 @@ export default function CoachPage() {
 
         {loading && (
           <div className="flex justify-start">
-            <div className="bg-[#111] border border-[#1e1e1e] px-4 py-3">
+            <div className="glass border border-white/8 px-4 py-3">
               <p className="text-[9px] font-mono uppercase tracking-widest text-gray-600 mb-1.5">ShoulderCoach</p>
               <div className="flex gap-1.5 items-center h-4">
                 <span className="w-1.5 h-1.5 bg-gray-600 rounded-full animate-bounce [animation-delay:0ms]" />
@@ -209,23 +209,23 @@ export default function CoachPage() {
       </div>
 
       {/* Input area */}
-      <div className="border-t border-[#141414] px-4 py-3 space-y-2">
+      <div className="glass-bar border-t border-white/5 px-4 py-3 space-y-2">
         <input type="text"
           placeholder="Game situation (optional) — e.g. Q4, down 2, 30s left"
           value={context}
           onChange={(e) => setContext(e.target.value)}
-          className="w-full bg-transparent border-b border-[#1a1a1a] px-0 py-1.5 text-[11px] text-gray-500 placeholder-gray-700 focus:outline-none focus:border-[#333] transition-colors" />
+          className="w-full bg-transparent border-b border-white/8 px-0 py-1.5 text-[11px] text-gray-400 placeholder-gray-600 focus:outline-none focus:border-white/20 transition-colors" />
         <div className="flex gap-2">
           <input type="text"
             placeholder="Ask a coaching question..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-            className="flex-1 bg-[#0f0f0f] border border-[#1e1e1e] px-4 py-3 text-white text-sm placeholder-gray-700 focus:outline-none focus:border-[#333] min-h-[44px]" />
+            className="flex-1 glass border border-white/8 px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-white/20 min-h-[44px] bg-transparent" />
           <button
             onClick={handleSend}
             disabled={loading || !input.trim()}
-            className="px-4 bg-orange-500 hover:bg-orange-400 text-white font-black text-xs uppercase tracking-widest transition-all disabled:opacity-30 disabled:cursor-not-allowed min-h-[44px] whitespace-nowrap active:scale-95 active:bg-orange-600"
+            className="interactive-panel px-4 bg-orange-500 hover:bg-orange-400 text-white font-black text-xs uppercase tracking-widest disabled:opacity-30 disabled:cursor-not-allowed min-h-[44px] whitespace-nowrap shadow-[0_12px_30px_rgba(249,115,22,0.28)]"
           >
             Ask
           </button>

@@ -34,7 +34,7 @@ export default function ProbabilityTree({ threeMakePct, twoMakePct, otWinRate, p
   return (
     <div className="space-y-0">
       {/* Go for 3 branch */}
-      <div className="border border-[#1e1e1e] px-4 py-4">
+      <div className="glass border border-white/6 px-4 py-4">
         <div className="flex items-center justify-between mb-3">
           <p className="text-[9px] font-mono uppercase tracking-widest text-gray-600">Option A — Go for 3</p>
           {winner === "3" && (
@@ -56,14 +56,14 @@ export default function ProbabilityTree({ threeMakePct, twoMakePct, otWinRate, p
             color="#333"
           />
         </div>
-        <div className="mt-3 pt-3 border-t border-[#1a1a1a] flex justify-between items-baseline">
+        <div className="mt-3 pt-3 border-t border-white/6 flex justify-between items-baseline">
           <span className="text-[9px] uppercase tracking-widest text-gray-600">Net win probability</span>
           <span className="text-base font-black text-white tabular-nums">{pWinGo3.toFixed(1)}%</span>
         </div>
       </div>
 
       {/* Go for 2 branch */}
-      <div className="border border-[#1e1e1e] px-4 py-4">
+      <div className="glass border border-white/6 px-4 py-4">
         <div className="flex items-center justify-between mb-3">
           <p className="text-[9px] font-mono uppercase tracking-widest text-gray-600">Option B — Play for 2 + OT</p>
           {winner === "2" && (
@@ -91,7 +91,7 @@ export default function ProbabilityTree({ threeMakePct, twoMakePct, otWinRate, p
             color="#333"
           />
         </div>
-        <div className="mt-3 pt-3 border-t border-[#1a1a1a] flex justify-between items-baseline">
+        <div className="mt-3 pt-3 border-t border-white/6 flex justify-between items-baseline">
           <span className="text-[9px] uppercase tracking-widest text-gray-600">Net win probability</span>
           <span className="text-base font-black text-white tabular-nums">{pWinGo2.toFixed(1)}%</span>
         </div>

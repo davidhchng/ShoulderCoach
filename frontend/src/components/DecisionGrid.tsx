@@ -10,14 +10,15 @@ interface DecisionGridProps {
 
 export default function DecisionGrid({ decisions }: DecisionGridProps) {
   return (
-    <div className="grid grid-cols-2 gap-px bg-[#141414]">
-      {decisions.map((decision) => {
+    <div className="grid grid-cols-2 gap-px mx-4" style={{ background: "rgba(255,255,255,0.04)" }}>
+      {decisions.map((decision, index) => {
         const meta = getDecisionMeta(decision.decision_type);
         return (
           <Link
             key={decision.decision_type}
             href={`/decide/${decision.decision_type}`}
-            className="block bg-[#080808] p-5 hover:bg-[#0f0f0f] transition-colors active:bg-[#141414]"
+            className="glass interactive-panel fade-up block px-5 py-5 hover:bg-white/5"
+            style={{ animationDelay: `${index * 70}ms` }}
           >
             <p className={`text-[10px] font-mono font-bold uppercase tracking-widest mb-3 ${meta.color}`}>
               {meta.abbr}
@@ -25,7 +26,7 @@ export default function DecisionGrid({ decisions }: DecisionGridProps) {
             <h3 className="font-bold text-sm text-white leading-snug mb-1">
               {decision.display_name}
             </h3>
-            <p className="text-gray-600 text-xs leading-snug">
+            <p className="text-gray-500 text-xs leading-snug">
               {decision.description}
             </p>
           </Link>
