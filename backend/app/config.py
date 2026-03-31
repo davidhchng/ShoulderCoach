@@ -7,13 +7,13 @@ load_dotenv()
 # OpenAI
 OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
 
-# Database
-DATABASE_PATH: str = os.getenv("DATABASE_PATH", "data/shouldercoach.db")
+# Database — committed deploy DB is the default; override with DATABASE_PATH env var
+DATABASE_PATH: str = os.getenv("DATABASE_PATH", "data/shouldercoach_deploy.db")
 
-# CORS
+# CORS — set ALLOWED_ORIGINS env var to comma-separated list in production
 ALLOWED_ORIGINS: list[str] = [
     o.strip()
-    for o in os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+    for o in os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:3002").split(",")
     if o.strip()
 ]
 

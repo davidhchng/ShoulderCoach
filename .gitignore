@@ -13,10 +13,14 @@ venv/
 env/
 .env
 
-# SQLite database
+# SQLite database (raw data excluded; deploy DB committed)
 *.db
 *.sqlite
 *.sqlite3
+!backend/data/shouldercoach_deploy.db
+
+# MediaPipe model committed so Railway doesn't need outbound internet
+!backend/data/pose_landmarker_lite.task
 
 # Node
 node_modules/

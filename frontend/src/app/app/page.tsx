@@ -68,6 +68,25 @@ export default async function AppHomePage() {
         <DecisionGrid decisions={decisions} />
       )}
 
+      <div className="px-5 pt-5 pb-3 flex items-center gap-3">
+        <p className="text-[9px] font-mono font-bold uppercase tracking-[0.22em] text-gray-500">
+          Player Tools
+        </p>
+        <div className="flex-1 h-px bg-white/6" />
+      </div>
+
+      <Link
+        href="/form-check"
+        className="glass interactive-panel fade-up mx-4 flex items-center justify-between border border-white/8 px-4 py-4 hover:border-white/15 hover:bg-white/5 group"
+      >
+        <div>
+          <p className="text-[9px] font-mono uppercase tracking-widest text-orange-400 mb-1">Form Analysis</p>
+          <p className="text-sm font-bold text-white">Shot Form Analyzer</p>
+          <p className="text-xs text-gray-500 mt-0.5">Upload a clip — biomechanical feedback on 5 metrics</p>
+        </div>
+        <span className="text-gray-500 group-hover:text-white transition-colors text-lg">→</span>
+      </Link>
+
       <div className="mt-auto px-5 py-6 border-t border-white/5">
         <p className="text-[9px] uppercase tracking-widest text-gray-600 text-center">
           ShoulderCoach · NBA 2019–2024

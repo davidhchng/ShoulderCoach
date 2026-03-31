@@ -88,6 +88,40 @@ export async function askCoach(
   return res.json();
 }
 
+export interface FormMetric {
+  name: string;
+  key: string;
+  value: number | null;
+  unit: string;
+  ideal_range: string;
+  in_range: boolean | null;
+  note: string;
+}
+
+export interface FormCheckResponse {
+  metrics: FormMetric[];
+  passing: number;
+  total: number;
+  frames_analyzed: number;
+  phase_detected: boolean;
+  narrative: string;
+  video_id: string | null;
+}
+
+export async function analyzeShootingForm(file: File): Promise<FormCheckResponse> {
+  const form = new FormData();
+  form.append("video", file);
+  const res = await fetch(`${API_BASE}/api/form-check`, {
+    method: "POST",
+    body: form,
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || "Analysis failed");
+  }
+  return res.json();
+}
+
 export async function postDecision(
   type: string,
   inputs: Record<string, unknown>

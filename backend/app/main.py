@@ -22,6 +22,13 @@ app.add_middleware(
 @app.on_event("startup")
 def on_startup():
     create_all_tables()
+    # Pre-download the MediaPipe pose model so the first /form-check request is fast
+    try:
+        from app.engine.shooting_form import _ensure_model
+        _ensure_model()
+    except Exception as exc:
+        import logging
+        logging.getLogger(__name__).warning(f"MediaPipe model preload failed: {exc}")
 
 
 @app.get("/api/health")
@@ -40,9 +47,11 @@ def _mount_routers():
     from app.routers.meta import router as meta_router
     from app.routers.decisions import router as decisions_router
     from app.routers.coach import router as coach_router
+    from app.routers.form_check import router as form_check_router
     app.include_router(meta_router, prefix="/api")
     app.include_router(decisions_router, prefix="/api")
     app.include_router(coach_router, prefix="/api")
+    app.include_router(form_check_router, prefix="/api")
 
 
 _mount_routers()
