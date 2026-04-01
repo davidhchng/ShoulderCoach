@@ -546,4 +546,21 @@ def generate_annotated_video(video_path: str, analysis: dict, output_path: str) 
 
     cap.release()
     writer.release()
+
+    # Re-encode to H.264 with ffmpeg for browser compatibility
+    try:
+        import subprocess, tempfile, shutil
+        if shutil.which("ffmpeg"):
+            tmp_h264 = output_path + ".h264.mp4"
+            result = subprocess.run(
+                ["ffmpeg", "-y", "-i", output_path,
+                 "-vcodec", "libx264", "-pix_fmt", "yuv420p",
+                 "-preset", "fast", "-crf", "28", tmp_h264],
+                capture_output=True, timeout=120,
+            )
+            if result.returncode == 0 and os.path.exists(tmp_h264):
+                os.replace(tmp_h264, output_path)
+    except Exception as exc:
+        logger.warning(f"ffmpeg re-encode failed (video may not play in browser): {exc}")
+
     return True
