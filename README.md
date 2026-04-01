@@ -2,6 +2,8 @@
 
 **Live:** [shoulder-coach-1.vercel.app](https://shoulder-coach-1.vercel.app)
 
+![ShoulderCoach](frontend/public/poppovichpic.png)
+
 A basketball decision assistant and shooting form analyzer built on NBA historical data.
 
 ---
